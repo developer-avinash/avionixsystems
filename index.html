@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
+
     <title>Avionix Systems</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +13,10 @@
         rel="stylesheet">
     <link rel="stylesheet" href="templatemo-nexaverse.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- CryptoJS for Signature Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <!-- Paytm JS Checkout SDK (Staging) -->
+    <script type="application/javascript" src="https://securegw-stage.paytm.in/merchantpgpui/checkoutjs/merchants/NnirLC35511479087031.js" crossorigin="anonymous"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -118,7 +123,7 @@ https://templatemo.com/tm-603-nexaverse
                 <div class="intro-hero">
                     <div class="intro-hero-content">
                         <div class="intro-badges">
-                            <span class="intro-badge">Est. 2025</span>
+                            <span class="intro-badge">Launching 2026</span>
                         </div>
                         <h1 class="intro-headline">We Build Digital<br><span>Experiences</span> That Matter</h1>
                         <p class="intro-subtext">Transforming visionary ideas into powerful digital realities through
@@ -305,6 +310,44 @@ https://templatemo.com/tm-603-nexaverse
                             with unparalleled precision.</p>
                     </div>
 
+                    <!-- Test Product Card -->
+                    <div onclick="openProductModal('Test Product', 'Experience the power of Avionix with our premium test product. Designed for high performance and reliability.', '₹1.00')"
+                        class="group relative flex flex-col items-center text-center bg-[#09090b] border border-white/[0.08] hover:border-[#00ff9d]/30 rounded-[2rem] p-8 cursor-pointer overflow-hidden transition-all duration-700 shadow-2xl hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(0,255,157,0.15)]">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-[#00ff9d]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                        </div>
+
+                        <!-- Price Badge -->
+                        <div class="absolute top-6 right-6 z-10">
+                            <span
+                                class="bg-[#00ff9d]/10 text-[#00ff9d] text-[10px] font-bold px-3 py-1 rounded-full border border-[#00ff9d]/20 uppercase tracking-widest">
+                                ₹1.00
+                            </span>
+                        </div>
+
+                        <div
+                            class="w-20 h-20 rounded-3xl bg-white/[0.02] border border-white/[0.05] flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 mb-6 mt-2 group-hover:bg-[#00ff9d]/10 group-hover:border-[#00ff9d]/20">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-zap w-10 h-10 text-gray-400 group-hover:text-[#00ff9d] transition-colors duration-500">
+                                <path d="M4 14.5 14 3 12 11h8l-10 11.5 2-8.5H4z" />
+                            </svg>
+                        </div>
+
+                        <h3
+                            class="text-2xl font-display font-bold text-white mb-3 tracking-tight group-hover:translate-x-1 transition-transform duration-500">
+                            Test Product</h3>
+                        <p
+                            class="text-gray-400 text-xs font-medium px-2 leading-relaxed group-hover:text-gray-300 transition-colors">
+                            Premium features, lightning-fast performance, and dedicated support. Get started with our
+                            most versatile product today.</p>
+
+                        <button
+                            class="mt-6 px-6 py-2 bg-transparent border border-[#00ff9d]/30 text-[#00ff9d] text-[10px] font-bold rounded-full group-hover:bg-[#00ff9d] group-hover:text-black transition-all">Buy
+                            Now</button>
+                    </div>
+
                     <!-- Placeholder for future products -->
                     <div
                         class="group relative flex flex-col items-center justify-center text-center bg-white/[0.01] border border-dashed border-white/[0.1] rounded-[2rem] p-8 opacity-40 hover:opacity-60 transition-opacity duration-500">
@@ -389,7 +432,93 @@ https://templatemo.com/tm-603-nexaverse
                                 maintenance packages.</p>
                         </div>
                     </div>
+                    <div class="mt-12 pt-8 border-t border-white/10 text-center">
+                        <button onclick="openTermsModal()" class="intro-cta-primary !px-8 !py-3 !text-xs !bg-white/5 border-white/20 hover:border-primary/50">View Full Terms & Conditions</button>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Terms & Conditions Modal -->
+            <div id="termsModal" class="modal-overlay">
+                <div class="modal-container !max-w-4xl !h-[80vh] flex flex-col">
+                    <div class="modal-close" onclick="closeTermsModal()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 6 6 18" />
+                            <path d="m6 6 12 12" />
+                        </svg>
+                    </div>
+                    
+                    <div class="checkout-title !mb-2">Legal Documentation</div>
+                    <div class="checkout-subtitle !mb-6">Terms, Privacy & Policies</div>
+
+                    <div class="flex-1 overflow-y-auto pr-4 custom-scrollbar text-left space-y-8 text-gray-300 text-sm leading-relaxed pb-8">
+                        <!-- Terms of Use -->
+                        <section>
+                            <h2 class="text-xl font-display font-bold text-white mb-4 border-b border-white/10 pb-2">Terms & Conditions</h2>
+                            <p class="mb-4">This document is an electronic record in terms of Information Technology Act, 2000 and rules there under as applicable and the amended provisions pertaining to electronic records in various statutes as amended by the Information Technology Act, 2000. This electronic record is generated by a computer system and does not require any physical or digital signatures.</p>
+                            <p class="mb-4">This document is published in accordance with the provisions of Rule 3 (1) of the Information Technology (Intermediaries guidelines) Rules, 2011 that require publishing the rules and regulations, privacy policy and Terms of Use for access or usage of domain name ('Website'), including the related mobile site and mobile application <a href="https://avionixsystems.in/" class="text-primary hover:underline">https://avionixsystems.in/</a> (hereinafter referred to as 'Platform').</p>
+                            <p class="mb-4">The Platform is owned by <strong>9907460561</strong> with its registered office at Gram- baghaudi , post sudwar, a company incorporated under the Companies Act, 1956 ('Owner’, 'we', 'us', 'our').</p>
+                            <p class="mb-4">Your use of the Platform and services and tools are governed by the following terms and conditions (“Terms of Use”) as applicable to the Platform including the applicable policies which are incorporated herein by way of reference. If You transact on the Platform, You shall be subject to the policies that are applicable to the Platform for such transaction. By mere use of the Platform, You shall be contracting with the Platform Owner and these terms and conditions including the policies constitute Your binding obligations, with Platform Owner.</p>
+                            <p class="mb-4">These Terms of Use relate to your use of our website, goods (as applicable) or services (as applicable) (collectively, 'Services'). Any terms and conditions proposed by You which are in addition to or which conflict with these Terms of Use are expressly rejected by the Platform Owner and shall be of no force or effect. These Terms of Use can be modified at any time without assigning any reason. It is your responsibility to periodically review these Terms of Use to stay informed of updates.</p>
+                            
+                            <h3 class="text-white font-bold mb-3 mt-6">General Usage Terms:</h3>
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li>To access and use the Services, you agree to provide true, accurate and complete information to us during and after registration.</li>
+                                <li>Neither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials offered.</li>
+                                <li>Your use of our Services and the Platform is solely and entirely at your own risk and discretion.</li>
+                                <li>The contents of the Platform and the Services are proprietary to us and are licensed to us.</li>
+                                <li>Unauthorized use of the Platform and/or the Services may lead to action against you as per these Terms of Use and/or applicable laws.</li>
+                                <li>You agree to pay us the charges associated with availing the Services.</li>
+                                <li>You agree not to use the Platform for any purpose that is unlawful, illegal or forbidden.</li>
+                                <li>You shall indemnify and hold harmless Platform Owner and its affiliates from any claim or demand.</li>
+                                <li>All disputes shall be subject to the exclusive jurisdiction of the courts in Rewa/Sidhi and India.</li>
+                            </ul>
+                        </section>
+
+                        <!-- Privacy Policy -->
+                        <section>
+                            <h2 class="text-xl font-display font-bold text-white mb-4 border-b border-white/10 pb-2">Privacy Policy</h2>
+                            <p class="mb-4">This Privacy Policy describes how <strong>https://avionixsystems.in/ (9907460561)</strong> and its affiliates collect, use, share, protect or otherwise process your information/personal data through our Platform. By visiting this Platform, you expressly agree to be bound by the terms and conditions of this Privacy Policy.</p>
+                            <div class="space-y-4">
+                                <p><strong>Collection:</strong> We collect your personal data when you use our Platform, such as name, address, telephone number, and email ID. Sensitive data like payment info is collected with your consent in accordance with applicable laws.</p>
+                                <p><strong>Usage:</strong> We use personal data to provide requested services, fulfill orders, enhance customer experience, resolve disputes, and detect/protect against error or fraud.</p>
+                                <p><strong>Sharing:</strong> We may share data internally or with third-party service providers (sellers, logistics partners) to provide access to products and comply with legal obligations.</p>
+                                <p><strong>Security:</strong> We adopt reasonable security practices and procedures to protect your data. However, transmission over the internet remains subject to inherent risks.</p>
+                                <p><strong>Data Retention:</strong> We retain your personal data for no longer than is required for the purpose for which it was collected or as required by law.</p>
+                            </div>
+                        </section>
+
+                        <!-- Refund & Cancellation -->
+                        <section>
+                            <h2 class="text-xl font-display font-bold text-white mb-4 border-b border-white/10 pb-2">Refund & Cancellation Policy</h2>
+                            <p class="mb-4">This policy outlines how you can cancel or seek a refund for a product/service purchased through the Platform.</p>
+                            <ul class="list-decimal pl-5 space-y-3">
+                                <li><strong>Cancellations:</strong> Requests will only be considered if made within <strong>30 days</strong> of placing the order, unless shipping has already been initiated.</li>
+                                <li><strong>Perishable Items:</strong> Cancellation requests for items like flowers or eatables are not accepted, though refunds may be offered for quality issues.</li>
+                                <li><strong>Damaged/Defective Items:</strong> Must be reported within <strong>30 days</strong> of receipt for verification by the merchant.</li>
+                                <li><strong>Product Expectations:</strong> If a product is not as shown on the site, please notify customer service within <strong>30 days</strong>.</li>
+                                <li><strong>Refund Processing:</strong> Approved refunds will take <strong>1 day</strong> to be processed to you.</li>
+                                <li><strong>Return Eligibility:</strong> Items must be unused, in original packaging, and reported within <strong>1 day</strong> for returns/exchanges.</li>
+                            </ul>
+                        </section>
+
+                        <!-- Shipping Policy -->
+                        <section>
+                            <h2 class="text-xl font-display font-bold text-white mb-4 border-b border-white/10 pb-2">Shipping Policy</h2>
+                            <p class="mb-4">Orders are shipped through registered domestic courier companies or speed post within <strong>1 day</strong> of the order/payment or as agreed during confirmation. Platform Owner is not liable for delays by courier companies or postal authorities. Delivery will be made to the address provided at purchase. Any shipping costs levied are non-refundable.</p>
+                        </section>
+
+                        <!-- Grievance -->
+                        <section class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                            <h3 class="text-white font-bold mb-2">Grievance & Contact</h3>
+                            <p><strong>Phone:</strong> 9907460561</p>
+                            <p><strong>Hours:</strong> Monday - Friday (9:00 - 18:00)</p>
+                            <p><strong>Address:</strong> Gram- baghaudi, post sudwar, Sidhi, MP</p>
+                        </section>
+                    </div>
+                </div>
+            </div>
             </div>
 
             <!-- Gallery Section (Hidden from main menu but kept for reference) -->
@@ -511,29 +640,187 @@ https://templatemo.com/tm-603-nexaverse
 
             <!-- About Section -->
             <div class="content-section" id="about">
+                <div class="relative z-10 bg-[#09090b] border border-white/10 p-8 md:p-12 rounded-[2.5rem] shadow-2xl overflow-hidden max-w-6xl mx-auto">
+                    <!-- Ambient background glow inside the card -->
+                    <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 blur-[100px] pointer-events-none"></div>
+                    <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none"></div>
 
-                <div class="section-header">
-                    <h2 class="section-title">About Us</h2>
-                    <p class="section-subtitle">Our story, mission, and values</p>
+                    <div class="section-header !text-left !mb-12">
+                        <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-4 tracking-tight">About Avionix</h1>
+                        <p class="text-gray-500 text-sm">Last updated: May 2026</p>
+                    </div>
+
+                    <div class="space-y-12">
+                        <!-- Top Grid: Mission & Identity -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <section class="bg-white/[0.02] border border-white/10 p-8 md:p-10 rounded-3xl relative group hover:border-primary/30 transition-all duration-500">
+                                <h2 class="text-xl font-display font-bold text-white mb-6 flex items-center gap-3">
+                                    <div class="w-1.5 h-6 rounded-full bg-primary shadow-[0_0_15px_rgba(0,255,157,0.5)]"></div>
+                                    Our Mission
+                                </h2>
+                                <p class="text-gray-400 font-light leading-relaxed text-base">
+                                    At <strong class="text-white font-medium">AVIONIX Systems</strong>, our mission is to revolutionize the way the world interacts with technology through intelligent automation and visionary design. We are focused on building a digital ecosystem that is <span class="text-primary">lightning-fast, private, and always evolving</span> to meet the demands of the future.
+                                </p>
+                            </section>
+
+                            <section class="bg-white/[0.02] border border-white/10 p-8 md:p-10 rounded-3xl relative group hover:border-primary/30 transition-all duration-500">
+                                <h2 class="text-xl font-display font-bold text-white mb-6 flex items-center gap-3">
+                                    <div class="w-1.5 h-6 rounded-full bg-primary shadow-[0_0_15px_rgba(0,255,157,0.5)]"></div>
+                                    Who We Are
+                                </h2>
+                                <p class="text-gray-400 font-light leading-relaxed text-base">
+                                    Avionix Systems is a futuristic digital laboratory founded by <strong class="text-white font-medium">Avinash Kumar Pandey</strong>. Backed by a team of elite developers and analysts, we integrate state-of-the-art AI, seamless automation, and high-performance architectures into everything we build.
+                                </p>
+                            </section>
+                        </div>
+
+                        <!-- Why Avionix Section -->
+                        <section class="bg-white/[0.02] border border-white/10 p-8 md:p-10 rounded-3xl relative group hover:border-primary/30 transition-all duration-500">
+                            <h2 class="text-xl font-display font-bold text-white mb-8 flex items-center gap-3">
+                                <div class="w-1.5 h-6 rounded-full bg-primary shadow-[0_0_15px_rgba(0,255,157,0.5)]"></div>
+                                Why Avionix?
+                            </h2>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <!-- Feature 1 -->
+                                <div class="flex items-start space-x-5 p-5 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-primary/20 transition-all duration-500 hover:translate-y-[-2px]">
+                                    <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-primary"><path d="M4 14.5 14 3 12 11h8l-10 11.5 2-8.5H4z"/></svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-white font-bold text-sm mb-1">Performance First</h4>
+                                        <p class="text-xs text-gray-500 leading-relaxed">Engineered for extreme speed and efficiency across all platforms.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Feature 2 -->
+                                <div class="flex items-start space-x-5 p-5 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-primary/20 transition-all duration-500 hover:translate-y-[-2px]">
+                                    <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-primary"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-white font-bold text-sm mb-1">Secure by Design</h4>
+                                        <p class="text-xs text-gray-500 leading-relaxed">Top-tier encryption and a strict focus on user data privacy.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Feature 3 -->
+                                <div class="flex items-start space-x-5 p-5 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-primary/20 transition-all duration-500 hover:translate-y-[-2px]">
+                                    <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-primary"><path d="M12 18V5"/><path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4"/><path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5"/><path d="M17.997 5.125a4 4 0 0 1 2.526 5.77"/><path d="M18 18a4 4 0 0 0 2-7.464"/><path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517"/><path d="M6 18a4 4 0 0 1-2-7.464"/><path d="M6.003 5.125a4 4 0 0 0-2.526 5.77"/></svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-white font-bold text-sm mb-1">Smart Adaptability</h4>
+                                        <p class="text-xs text-gray-500 leading-relaxed">Our systems learn and adapt to your unique workflow seamlessly.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Feature 4 -->
+                                <div class="flex items-start space-x-5 p-5 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-primary/20 transition-all duration-500 hover:translate-y-[-2px]">
+                                    <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-primary"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-white font-bold text-sm mb-1">Targeted Solutions</h4>
+                                        <p class="text-xs text-gray-500 leading-relaxed">Built for real-world automation and business growth utility.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
                 </div>
 
-                <div class="about-content">
-                    <div class="about-text">
-                        <h3>Pioneering Digital Innovation</h3>
-                        <p>Founded in 2025, Avionix Systems has grown from a small team of passionate developers into a
-                            leading digital agency. We believe in pushing boundaries and creating solutions that make a
-                            real difference.</p>
-                        <p>Our diverse team brings together expertise from design, development, AI, and strategy to
-                            deliver holistic solutions that drive business growth and user engagement.</p>
-                        <p>We're not just building products – we're shaping the future of digital experiences.</p>
-                        <p>Discover AI-optimized web templates from <a href="" rel="nofollow"
-                                target="_blank">TemplateMo</a>. Maximize efficiency with the timer platform at <a
-                                href="https://timermo.com" rel="nofollow" target="_blank">TimerMo</a>. Design like a pro
-                            using vector stickers from <a href="https://www.vectorsticker.com" rel="nofollow"
-                                target="_blank">VectorSticker</a>.</p>
+                <!-- FAQ Section -->
+                <div class="faq-container mt-20">
+                    <div class="section-header">
+                        <h2 class="section-title">Common Questions</h2>
+                        <p class="section-subtitle">Everything you need to know about Avionix</p>
                     </div>
-                    <div class="about-image">
-                        <img src="images/about-our-team.jpg" alt="Our Team">
+
+                    <div class="faq-grid">
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-question">
+                                <span>What is Avionix AI?</span>
+                                <div class="faq-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Avionix AI is our flagship artificial intelligence engine designed to automate complex workflows and provide intelligent insights for businesses and individuals. It uses state-of-the-art neural networks to deliver human-like reasoning and problem-solving capabilities.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-question">
+                                <span>How are digital products delivered?</span>
+                                <div class="faq-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>All digital licenses, software packages, and API keys are delivered instantly to your registered email address and user dashboard immediately after a successful payment transaction.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-question">
+                                <span>Are my transactions secure?</span>
+                                <div class="faq-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Absolutely. We use industry-standard SSL encryption and partner with secure payment gateways like Paytm to ensure that your financial information is never stored on our servers and is always handled with the highest level of security.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-question">
+                                <span>Do you provide custom AI solutions?</span>
+                                <div class="faq-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Yes, we do. Our specialized engineering team can develop custom AI models, tailored software architectures, and automated systems specifically designed to meet your organization's unique requirements and goals.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-question">
+                                <span>What kind of support do you offer?</span>
+                                <div class="faq-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>We provide 24/7 global support via email, live chat, and WhatsApp. Our dedicated support team is always ready to assist with technical integration, troubleshooting, and general inquiries to ensure your systems run smoothly.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-question">
+                                <span>Can I get a refund if I'm not satisfied?</span>
+                                <div class="faq-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>We offer a transparent 30-day money-back guarantee. If our systems do not perform according to the technical specifications outlined in your service agreement, we will issue a full refund, no questions asked.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-question">
+                                <span>Is Avionix a hardware or software company?</span>
+                                <div class="faq-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Avionix Systems is a holistic technology provider. While our core expertise lies in AI and software development, we also design and ship physical hardware, including dedicated server rigs and industrial-grade automation components.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -593,7 +880,7 @@ https://templatemo.com/tm-603-nexaverse
                                 </svg>
                             </div>
                             <div class="author-info">
-                                <h5>Rahul Vishvakarma</h5>
+                                <h5>Pooja Vishvakarma</h5>
                                 <p>Developer, Avionix Systems</p>
                             </div>
                         </div>
@@ -611,7 +898,7 @@ https://templatemo.com/tm-603-nexaverse
                                 </svg>
                             </div>
                             <div class="author-info">
-                                <h5>Akash Chaturvedi</h5>
+                                <h5>Akanksha Chaturvedi</h5>
                                 <p>Business Analyst, Avionix Systems</p>
                             </div>
                         </div>
@@ -687,7 +974,135 @@ https://templatemo.com/tm-603-nexaverse
             </svg>
         </div>
     </div>
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-close" onclick="closeModal()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+            </div>
+
+            <!-- Step 1: Product Details -->
+            <div id="step-details">
+                <div class="checkout-title" id="modalProductTitle">Test Product</div>
+                <div class="checkout-subtitle" id="modalProductPrice">₹1.00</div>
+                <p id="modalProductDesc" class="text-gray-400 text-sm leading-relaxed text-center mb-8">Premium
+                    features, lightning-fast performance, and dedicated support.</p>
+
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-center gap-3 text-sm text-gray-300">
+                        <div
+                            class="w-5 h-5 rounded-full bg-[#00ff9d]/10 flex items-center justify-center text-[#00ff9d]">
+                            ✓</div>
+                        <span>Instant Digital Delivery</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-gray-300">
+                        <div
+                            class="w-5 h-5 rounded-full bg-[#00ff9d]/10 flex items-center justify-center text-[#00ff9d]">
+                            ✓</div>
+                        <span>24/7 Priority Support</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-gray-300">
+                        <div
+                            class="w-5 h-5 rounded-full bg-[#00ff9d]/10 flex items-center justify-center text-[#00ff9d]">
+                            ✓</div>
+                        <span>Lifetime Security Updates</span>
+                    </div>
+                </div>
+
+                <button onclick="goToForm()" class="checkout-btn">Proceed to Buy</button>
+            </div>
+
+            <!-- Step 2: Checkout Form -->
+            <div id="step-form" style="display: none;">
+                <div class="checkout-title">Checkout</div>
+                <div class="checkout-subtitle">Fill in your details to proceed</div>
+
+                <form id="checkoutDataForm" class="checkout-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-field">
+                        <label>Full Name</label>
+                        <input type="text" id="userName" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Phone Number</label>
+                        <input type="tel" id="userPhone" placeholder="Enter phone number" required pattern="[0-9]{10}">
+                    </div>
+                    <div class="form-field">
+                        <label>Email Address</label>
+                        <input type="email" id="userEmail" placeholder="Enter email address" required>
+                    </div>
+                    <button type="submit" class="checkout-btn">Pay Now</button>
+                </form>
+            </div>
+
+            <!-- Step 3: Payment Loading (Real Connection) -->
+            <div id="step-payment" class="payment-loading">
+                <div class="paytm-header">
+                    <img src="https://static.paytm.com/common/images/common/paytm-logo.png" alt="Paytm"
+                        class="paytm-logo-img">
+                    <div class="paytm-badge">Connecting...</div>
+                </div>
+
+                <div class="payment-status-container">
+                    <div class="payment-dots">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                    <div class="text-[#00ff9d] text-xs font-bold uppercase tracking-widest animate-pulse" id="paymentStatusText">Requesting Token...</div>
+                </div>
+
+                <p class="text-gray-500 text-[10px] text-center mt-6">Processing real-time transaction via secure gateway.</p>
+            </div>
+
+            <!-- Step 4: Success Screen -->
+            <div id="step-success" class="success-screen">
+                <div class="success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                </div>
+                <div class="checkout-title">Payment Success!</div>
+                <div class="checkout-subtitle">Your transaction was successful</div>
+
+                <div class="summary-card">
+                    <div class="summary-item">
+                        <span class="summary-label">Product</span>
+                        <span class="summary-value" id="successProduct">Test Product</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Name</span>
+                        <span class="summary-value" id="successName">John Doe</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Phone</span>
+                        <span class="summary-value" id="successPhone">9907460561</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Transaction ID</span>
+                        <span class="summary-value text-[#00ff9d]" id="successTxnId">AVX-9823472394</span>
+                    </div>
+                </div>
+
+                <button onclick="copyAndProceed()"
+                    class="checkout-btn whatsapp-btn flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                    Copy & Proceed
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="templatemo-nexa-scripts.js"></script>
+
+
 </body>
 
 </html>

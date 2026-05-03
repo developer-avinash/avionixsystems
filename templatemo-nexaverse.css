@@ -230,6 +230,22 @@ body {
 	flex-direction: column;
 }
 
+#contentArea, .footer {
+	max-width: 1400px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+@media (max-width: 768px) {
+	#contentArea, .footer {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
 /* Header */
 .header {
 	position: fixed;
@@ -588,7 +604,7 @@ body {
 .content-section {
 	display: none;
 	opacity: 0;
-	padding: 80px 5%; /* Side padding for global margin */
+	padding: 80px 0; /* Removed horizontal padding here as it's now global */
 	position: relative;
 }
 
@@ -1960,12 +1976,13 @@ body {
 		width: 100%;
 		height: 100vh;
 		background: #000000;
-		padding: 100px 20px;
+		padding: 100px 16px;
 		transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 		z-index: 1000;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
+		justify-content: flex-start;
+		overflow-y: auto;
 	}
 
 	.main-nav.active {
@@ -1974,18 +1991,42 @@ body {
 
 	.nav-links {
 		flex-direction: column;
-		gap: 20px;
+		gap: 8px;
 		width: 100%;
 		max-width: 320px;
+		padding: 0 20px;
 	}
 
 	.nav-links li {
-		font-size: 20px;
-		padding: 20px;
-		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
 		width: 100%;
+		padding: 18px 24px;
 		border-radius: 20px;
-		background: rgba(255, 255, 255, 0.03);
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		font-size: 13px;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		color: rgba(255, 255, 255, 0.4);
+		border: 1px solid transparent;
+		background: transparent;
+		text-align: left;
+	}
+
+	.nav-links li:hover {
+		color: #ffffff;
+		background: rgba(255, 255, 255, 0.02);
+		border-color: rgba(255, 255, 255, 0.05);
+		transform: translateX(5px);
+	}
+
+	.nav-links li.active {
+		background: rgba(255, 255, 255, 0.05) !important;
+		color: #ffffff !important;
+		border-color: rgba(255, 255, 255, 0.1) !important;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 	}
 
 	.hamburger {
@@ -2297,4 +2338,389 @@ body {
 		width: 48px;
 		height: 48px;
 	}
-}
+}
+
+/* Modal System */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-container {
+    width: 100%;
+    max-width: 500px;
+    background: #09090b;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2.5rem;
+    padding: 2.5rem;
+    position: relative;
+    transform: translateY(30px) scale(0.95);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.modal-overlay.active .modal-container {
+    transform: translateY(0) scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+}
+
+/* Checkout Form Styles */
+.checkout-form {
+    margin-top: 1.5rem;
+}
+
+.checkout-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.checkout-subtitle {
+    color: #9ca3af;
+    font-size: 0.875rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-field {
+    margin-bottom: 1.25rem;
+}
+
+.form-field label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.form-field input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 0.875rem 1.25rem;
+    color: white;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.form-field input:focus {
+    outline: none;
+    border-color: #00ff9d;
+    background: rgba(0, 255, 157, 0.02);
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.05);
+}
+
+.checkout-btn {
+    width: 100%;
+    background: #00ff9d;
+    color: #000000;
+    border: none;
+    border-radius: 1rem;
+    padding: 1rem;
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 1rem;
+}
+
+.checkout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 255, 157, 0.25);
+    background: #05ff9f;
+}
+
+/* Payment Loading */
+.payment-loading {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.payment-dots {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: #00ff9d;
+    border-radius: 50%;
+    animation: dotPulse 1.4s infinite ease-in-out both;
+}
+
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dotPulse {
+    0%, 80%, 100% { transform: scale(0.3); opacity: 0.3; }
+    40% { transform: scale(1); opacity: 1; }
+}
+
+/* Paytm Gateway Authenticity Styles */
+.paytm-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
+}
+
+.paytm-logo-img {
+    height: 30px;
+    filter: brightness(0) invert(1);
+}
+
+.paytm-badge {
+    background: #002970;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.paytm-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.paytm-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.paytm-info-item span {
+    font-size: 9px;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.paytm-info-item strong {
+    font-size: 11px;
+    font-family: monospace;
+}
+
+.payment-status-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Success Screen */
+.success-screen {
+    display: none;
+    text-align: center;
+}
+
+.success-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(0, 255, 157, 0.1);
+    border: 1px solid #00ff9d;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: #00ff9d;
+}
+
+.summary-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    text-align: left;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.summary-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.summary-label {
+    color: #6b7280;
+    font-size: 0.8125rem;
+}
+
+.summary-value {
+    color: white;
+    font-size: 0.8125rem;
+    font-weight: 600;
+}
+
+.whatsapp-btn {
+    background: #25D366;
+    color: white;
+}
+
+.whatsapp-btn:hover {
+    background: #22c35e;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.25);
+}
+
+/* FAQ Accordion Styles */
+.faq-container {
+    max-width: 800px;
+    margin: 60px auto 0;
+}
+
+.faq-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.faq-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.faq-question {
+    padding: 24px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.faq-question span {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+.faq-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    transition: all 0.4s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+    background: var(--primary);
+    color: #000000;
+    box-shadow: 0 0 15px var(--glow-primary);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0, 255, 157, 0.02);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+}
+
+.faq-answer p {
+    padding: 0 30px 30px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+.faq-item.active {
+    border-color: var(--primary);
+    background: rgba(0, 255, 157, 0.03);
+}
+
