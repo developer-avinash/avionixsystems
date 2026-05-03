@@ -39,6 +39,12 @@ let isTransitioning = false;
 
 function showSection(sectionId) {
    if (isTransitioning) return;
+
+   // Handle invalid section IDs
+   if (!document.getElementById(sectionId)) {
+      sectionId = 'not-found';
+   }
+
    isTransitioning = true;
 
    const activeSection = document.querySelector('.content-section.active');
@@ -131,4 +137,4 @@ function filterGallery(category, btn) {
          item.style.display = 'none';
       }
    });
-}
+}

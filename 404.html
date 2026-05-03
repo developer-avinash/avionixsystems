@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Avionix Systems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@200;300;400;500;600&family=Syne:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="templatemo-nexaverse.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Syne', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#00ff9d',
+                    }
+                }
+            },
+            corePlugins: {
+                preflight: false,
+            }
+        }
+    </script>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .error-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 40px;
+            padding: 60px 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: cardFadeIn 1s ease-out;
+        }
+
+        @keyframes cardFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glitch-404 {
+            font-size: 150px;
+            font-weight: 900;
+            font-family: 'Syne', sans-serif;
+            background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0.1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 20px;
+            position: relative;
+            letter-spacing: -5px;
+        }
+
+        .glitch-404::after {
+            content: "404";
+            position: absolute;
+            left: 2px;
+            text-shadow: -2px 0 #00ff9d;
+            top: 0;
+            color: white;
+            background: black;
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+            animation: noise-anim 2s infinite linear alternate-reverse;
+        }
+
+        @keyframes noise-anim {
+            0% { clip: rect(10px, 9999px, 50px, 0); }
+            20% { clip: rect(30px, 9999px, 20px, 0); }
+            40% { clip: rect(70px, 9999px, 90px, 0); }
+            60% { clip: rect(10px, 9999px, 30px, 0); }
+            80% { clip: rect(50px, 9999px, 10px, 0); }
+            100% { clip: rect(90px, 9999px, 40px, 0); }
+        }
+
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #00ff9d;
+            color: #000000;
+            padding: 16px 36px;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-top: 40px;
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+        }
+
+        .back-home-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 157, 0.4);
+            background: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Grid Overlay -->
+    <div class="grid-overlay"></div>
+
+    <div class="error-card">
+        <div class="glitch-404">404</div>
+        <h1 class="text-3xl font-display font-bold text-white mb-4">LOST IN CYBERSPACE</h1>
+        <p class="text-gray-400 text-lg max-w-md mx-auto leading-relaxed">
+            The encrypted channel you're trying to reach is offline or doesn't exist. Your connection has been rerouted.
+        </p>
+        
+        <a href="index.html" class="back-home-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Return to Base
+        </a>
+
+        <div class="mt-12 pt-12 border-t border-white/5 flex justify-center gap-6 opacity-30">
+            <div class="h-1 w-8 bg-primary rounded-full"></div>
+            <div class="h-1 w-8 bg-primary rounded-full"></div>
+            <div class="h-1 w-8 bg-primary rounded-full"></div>
+        </div>
+    </div>
+</body>
+
+</html>
